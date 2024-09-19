@@ -1,3 +1,1 @@
-class Alumno{
-    name: string;
-}
+import{Alumno} from ./Alumno
