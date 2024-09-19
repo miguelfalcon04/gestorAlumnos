@@ -1,0 +1,14 @@
+gitignore
+
+# Node Modules
+node_modules/
+
+# Compiled output
+dist/
+
+#Typescript cache
+*.tsbuildinfo
+
+#IDEs and editors
+.vscode/
+.idea/
