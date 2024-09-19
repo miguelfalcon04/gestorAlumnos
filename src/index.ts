@@ -1,0 +1,3 @@
+class Alumno{
+    name: string;
+}
