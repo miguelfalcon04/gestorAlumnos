@@ -1,5 +1,6 @@
 import { Alumno } from "./Alumno";
 import { Materia } from "./Materia";
+
 import * as readline from 'readline-sync';
 
 console.log('Bienvenido al Gestor de Alumnos\nOpciones:\n1º Crear Alumno\n2º Asignar Materia');
