@@ -1,9 +1,9 @@
 
 export class Alumno{
-    name: string;
+    name: String;
     age: number;
 
-    constructor(name: string, age: number) {
+    constructor(name: String, age: number) {
         this.name = name;
         this.age = age;
     }

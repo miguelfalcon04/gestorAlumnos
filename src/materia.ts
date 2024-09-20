@@ -1,23 +1,24 @@
 import { Alumno } from "./Alumno";
 
 export class Materia{
-    private name: string;
-    private curso: string;
+    private name: String;
+    private curso: number;
 
-    constructor(name: string, curso: string){
+    constructor(name: String, curso: number){
         this.name = name;
         this.curso = curso;
     }
 
-    public getCurso(): string{
+    public getCurso(): number{
         return this.curso;
     }
 
-    public get getName(): string {
+    public get getName(): String {
         return this.name;
     }
 
-    public show(){
-        console.log(`Estoy en el curso ${this.curso}, materia: ${this.name}`)
+    public show(): String{
+        return(`${this.curso}º ${this.name}`)
     }
+
 }
