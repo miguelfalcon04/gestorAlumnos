@@ -1,4 +1,5 @@
-class Alumno{
+
+export class Alumno{
     name: string;
     age: number;
 
