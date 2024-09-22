@@ -1,11 +1,13 @@
 import { Alumno } from "./Alumno";
 import { Materia } from "./Materia";
+import { MatAlu } from "./MatAlu";
 
 import * as readline from 'readline-sync';
 
 let salir = false;
 let alumnos: Alumno[] = [];
 let materias: Materia[] = [];
+let matAlu: MatAlu[] = [];
 
 do {
     console.log('Bienvenido al Gestor de Alumnos\nOpciones:\n1º Crear Alumno\n2º Asignar Materia');
@@ -17,7 +19,7 @@ do {
     switch(opc){
         // Crear ALumno
         case 1:
-            let name: String = readline.question('\nIntroduzca el nombre del alumno: ');
+            let name: String = readline.question('\nIntroduzca el nombre y apellidos del alumno: ');
             let age: number = readline.questionInt('Introduzca la edad del alumno: ');
 
             alumnos.push(new Alumno(name, age));
@@ -27,10 +29,32 @@ do {
 
         // Asignar Materia
         case 2:
+            console.log('Lista de Alumnos ')
+            let i = 1;
+            for(let alu of alumnos){
+                console.log(`\n${i}: ${alu.mostrarInfo()}`);
+                i++;
+            }
+
+            let opcAlu: number = readline.questionInt('Escoja un alumno: ');
+            let aluOpc: Alumno = alumnos[opcAlu - 1];
+
+            console.log('Lista de Materias')
+            i = 1;
+            for (let mat of materias){
+                console.log(`\n${i}: ${mat.show()}`);
+                i++;
+            }
+
+            let opcMat: number = readline.questionInt('Escoja una Materia: ');
+            let matOpc: Materia =  materias[opcMat - 1];
+
+            matAlu.push(new MatAlu(matOpc, aluOpc));
             break;
 
         // Listar Materias Alumno
         case 3:
+            
             break;
 
         // Crear Materia

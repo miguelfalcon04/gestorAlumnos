@@ -1,8 +1,8 @@
 import { Alumno } from "./Alumno";
 
 export class Materia{
-    private name: String;
-    private curso: number;
+    public name: String;
+    public curso: number;
 
     constructor(name: String, curso: number){
         this.name = name;
