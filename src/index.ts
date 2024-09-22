@@ -1,13 +1,35 @@
 import { Alumno } from "./Alumno";
 import { Materia } from "./Materia";
-import { MatAlu } from "./MatAlu";
+import { Matriculado } from "./Matriculado";
 
 import * as readline from 'readline-sync';
 
 let salir = false;
+let i = 0;
 let alumnos: Alumno[] = [];
 let materias: Materia[] = [];
-let matAlu: MatAlu[] = [];
+let matAlu: Matriculado[] = [];
+
+function listar(matAlu: Matriculado[], alumno: Alumno): string {  
+    let idAlu: number = alumno.getId();  
+
+    let aparece: number = 0;
+    let matricula: string = `El Alumno ${alumno.getName()} está matriculado en: \n`;  
+
+    for (let matriculado of matAlu) {
+        if (matriculado.getAlumno().getId() == idAlu) {
+            aparece++;
+            matricula += `${matriculado.getMateria().getName}\n`; 
+        }
+    }
+
+    if (aparece == 0) {
+        matricula += `0 asignaturas\n`;
+    }
+
+    return matricula;
+}
+
 
 do {
     console.log('Bienvenido al Gestor de Alumnos\nOpciones:\n1º Crear Alumno\n2º Asignar Materia');
@@ -30,9 +52,9 @@ do {
         // Asignar Materia
         case 2:
             console.log('Lista de Alumnos ')
-            let i = 1;
+            i = 1;
             for(let alu of alumnos){
-                console.log(`\n${i}: ${alu.mostrarInfo()}`);
+                console.log(`\n${i}: ${alu.show()}`);
                 i++;
             }
 
@@ -49,12 +71,23 @@ do {
             let opcMat: number = readline.questionInt('Escoja una Materia: ');
             let matOpc: Materia =  materias[opcMat - 1];
 
-            matAlu.push(new MatAlu(matOpc, aluOpc));
+            matAlu.push(new Matriculado(matOpc, aluOpc));
+            console.log(`Alumno: ${aluOpc.show()} matriculado en ${matOpc.show()}`);
             break;
 
         // Listar Materias Alumno
         case 3:
-            
+            console.log('Lista de Alumnos ')
+            i = 1;
+            for(let alu of alumnos){
+                console.log(`\n${i}: ${alu.show()}`);
+                i++;
+            }
+
+            let opcAlu2: number = readline.questionInt('Escoja un alumno: ');
+            let aluOpc2: Alumno = alumnos[opcAlu2 - 1];
+
+            console.log(listar(matAlu,aluOpc2));
             break;
 
         // Crear Materia
