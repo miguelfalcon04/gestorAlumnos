@@ -4,10 +4,12 @@ import { Materia } from "./Materia";
 export class Matriculado{
     private alumno: Alumno;
     private materia: Materia;
+    private nota: number;
 
-    constructor (materia: Materia, alumno: Alumno){
+    constructor (materia: Materia, alumno: Alumno, nota: number | null = null){
         this.alumno = alumno;
         this.materia = materia;
+        this.nota = 0;
     }
 
     public getAlumno(): Alumno{
@@ -18,29 +20,16 @@ export class Matriculado{
         return this.materia;
     }
 
-    public show(): String{
-        return(`Alumno: ${this.alumno.show()} matriculado en ${this.materia.show()}`);
+    public getNota(): number{
+        return this.nota;
     }
 
-    public listar(matAlu: Matriculado[], alumno: Alumno): String{
-        let idAlu: number = alumno.getId();
+    public setNota(nota: number): void{
+        this.nota = nota;
+    }
 
-        let aparece: number = 0;
-        let matricula: String = `El Alumno ${alumno.getName()} esta matriculado en: \n`;
-
-        for(let alumno of matAlu){
-            if(alumno.getAlumno().getId() == idAlu){
-                aparece++;
-                matricula+= `${alumno.getMateria().getName}\n`;
-            }
-        }
-
-        if(aparece==0){
-            matricula += `0 asignaturas \n`;
-        }else{
-        }
-
-        return matricula;
+    public show(): String{
+        return(`Alumno: ${this.alumno.show()} matriculado en ${this.materia.show()}`);
     }
 
 }

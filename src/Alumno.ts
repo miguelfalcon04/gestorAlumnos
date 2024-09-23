@@ -29,4 +29,5 @@ export class Alumno{
     public show(): string {
         return(`Nombre: ${this.name}, Edad: ${this.age}`);
     }
+
 }
