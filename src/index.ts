@@ -163,12 +163,10 @@ do {
             asignarNota();
             break;
 
-        // Listar Alumnos con nota
-        case 7:
+        case 7: // Arreglar console.log
             listarAlumnosConNota();
             break;
 
-        // Salir
         case 8:
             salir = true;
             break;
