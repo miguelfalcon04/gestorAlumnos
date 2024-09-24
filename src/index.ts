@@ -4,7 +4,6 @@ import { Matriculado } from "./Matriculado";
 
 import * as readline from 'readline-sync';
 
-
 function listarAlumnoMatricula(matAlu: Matriculado[], alumno: Alumno): string {  
     let idAlu: number = alumno.getId();  
 
@@ -23,6 +22,24 @@ function listarAlumnoMatricula(matAlu: Matriculado[], alumno: Alumno): string {
     }
 
     return matricula;
+}
+
+/**
+ * Verifica que el indice seleccionado este dentro del array proporcionado
+ * @param arr array de tipo T
+ * @param i Selección de indice que se ha hecho dentro del array
+ * @returns Un nuevo indice en caso de que este fuera de t.lenght()
+ */
+function verificarDentroArray<T extends Alumno | Materia>(arr: T[], i: number): number {
+    let index = i;
+
+    if(index-1 < 0 || index-1 >= arr.length ){
+        do {
+            index = readline.questionInt('Fuera de rango\nElija otro: ');
+        } while (index-1 < 0 || index-1 >= arr.length);
+    }
+
+    return index;
 }
 
 function listarAlumnos(){
@@ -58,21 +75,25 @@ function asignarMateria(){
     listarAlumnos();
 
     let opcAlu: number = readline.questionInt('Escoja un alumno: ');
+    opcAlu = verificarDentroArray(alumnos, opcAlu);
     let aluOpc: Alumno = alumnos[opcAlu - 1];
 
     listarMaterias();
 
     let opcMat: number = readline.questionInt('Escoja una Materia: ');
+    opcMat = verificarDentroArray(materias, opcMat);
     let matOpc: Materia =  materias[opcMat - 1];
 
     matAlu.push(new Matriculado(matOpc, aluOpc));
-    console.log(`Alumno: ${aluOpc.show()} matriculado en ${matOpc.show()}`);
+    console.log(`Alumno: ${aluOpc.getName()} matriculado en ${matOpc.show()}`);
 }
 
 function listarMateriasAlumno(){
     listarAlumnos();
 
     let opcAlu: number = readline.questionInt('Escoja un alumno: ');
+    opcAlu = verificarDentroArray(alumnos, opcAlu);
+
     let aluOpc: Alumno = alumnos[opcAlu - 1];
 
     console.log(listarAlumnoMatricula(matAlu,aluOpc));
@@ -90,6 +111,7 @@ function crearMateria(){
 function asignarNota() {
     listarAlumnos();
     let opcAlu: number = readline.questionInt('Escoja un alumno: ');
+    opcAlu = verificarDentroArray(alumnos, opcAlu);
     let aluOpc: Alumno = alumnos[opcAlu - 1];
 
     let materiasAlumno: Matriculado[] = matAlu.filter(matriculado => matriculado.getAlumno().getId() === aluOpc.getId());
@@ -105,11 +127,11 @@ function asignarNota() {
     }
 
     let opcMat: number = readline.questionInt('A cual asignatura va a asignarle una nota?: ');
+    opcMat = verificarDentroArray(materias, opcMat);
     let matriculado: Matriculado = materiasAlumno[opcMat - 1];
 
     let nota: number = readline.questionInt('Que nota ha sacado?: ');
-    
-    // Asignar la nota a la materia seleccionada
+
     matriculado.setNota(nota);
 
     console.log(`Nota ${nota} asignada a ${matriculado.getMateria().getName} para el alumno ${aluOpc.getName()}.`);
@@ -118,16 +140,15 @@ function asignarNota() {
 function listarAlumnosConNota(){
     for(let alu of matAlu){
         if(alu.getNota() !== null){
-            console.log(alu);
+            console.log(alu.showNota());
         }
     }
 }
 
-
 let salir = false;
 let i = 0;
-let alumnos: Alumno[] = [];
-let materias: Materia[] = [];
+let alumnos: Alumno[] = [new Alumno("Miguel Falcón", 20), new Alumno("Noelia Quesada", 23), new Alumno("Pepe", 79)];
+let materias: Materia[] = [new Materia("Mates",2), new Materia("Lengua",4), new Materia("Historia",3)];
 let matAlu: Matriculado[] = [];
 
 
@@ -136,7 +157,6 @@ do {
     console.log('3º Listar Materias Alumno\n4º Crear Materia\n5º Listar Materias');
     console.log('6º Asignar nota a Materia de un Alumno\n7º Listar Alumnos con nota\n8º Salir');
     let opc: number = readline.questionInt('Que desea hacer?: ');
-
 
     switch(opc){
         case 1:

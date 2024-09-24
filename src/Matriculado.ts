@@ -32,4 +32,8 @@ export class Matriculado{
         return(`Alumno: ${this.alumno.show()} matriculado en ${this.materia.show()}`);
     }
 
+    public showNota(): String{
+        return(`Alumno ${this.alumno.show()} matriculado en ${this.materia.show()} con nota ${this.nota}`);
+    }
+
 }
