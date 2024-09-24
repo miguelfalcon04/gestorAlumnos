@@ -33,7 +33,7 @@ export class Matriculado{
     }
 
     public showNota(): String{
-        return(`Alumno ${this.alumno.show()} matriculado en ${this.materia.show()} con nota ${this.nota}`);
+        return(`Alumno ${this.alumno.getName()} matriculado en ${this.materia.getName()} con nota ${this.nota}`);
     }
 
 }

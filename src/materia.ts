@@ -13,7 +13,7 @@ export class Materia{
         return this.curso;
     }
 
-    public get getName(): String {
+    public getName(): String {
         return this.name;
     }
 

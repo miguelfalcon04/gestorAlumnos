@@ -13,7 +13,7 @@ function listarAlumnoMatricula(matAlu: Matriculado[], alumno: Alumno): string {
     for (let matriculado of matAlu) {
         if (matriculado.getAlumno().getId() == idAlu) {
             aparece++;
-            matricula += `${matriculado.getMateria().getName}\n`; 
+            matricula += `${matriculado.getMateria().getName()}\n`; 
         }
     }
 
@@ -123,7 +123,7 @@ function asignarNota() {
 
     console.log(`El alumno ${aluOpc.getName()} está matriculado en las siguientes materias:`);
     for (let i = 0; i < materiasAlumno.length; i++) {
-        console.log(`${i + 1}: ${materiasAlumno[i].getMateria().getName}`);
+        console.log(`${i + 1}: ${materiasAlumno[i].getMateria().getName()}`);
     }
 
     let opcMat: number = readline.questionInt('A cual asignatura va a asignarle una nota?: ');
@@ -134,7 +134,7 @@ function asignarNota() {
 
     matriculado.setNota(nota);
 
-    console.log(`Nota ${nota} asignada a ${matriculado.getMateria().getName} para el alumno ${aluOpc.getName()}.`);
+    console.log(`Nota ${nota} asignada a ${matriculado.getMateria().getName()} para el alumno ${aluOpc.getName()}.`);
 }
 
 function listarAlumnosConNota(){
@@ -183,7 +183,7 @@ do {
             asignarNota();
             break;
 
-        case 7: // Arreglar console.log
+        case 7:
             listarAlumnosConNota();
             break;
 
